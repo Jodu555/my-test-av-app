@@ -38,14 +38,16 @@ export default function Watch() {
 	const watchList = useStore((state) => state.watchList);
 	const fetchWatchList = useStore((state) => state.fetchWatchList);
 
-	const BASE_URL = 'https://cinema-api.jodu555.de';
+	const BASE_API_URL = 'https://cinema-api.jodu555.de';
+
+	const BASE_URL = 'https://cinema.jodu555.de';
 
 	useEffect(() => {
 		fetchWatchList();
 	}, []);
 
 	const buildVideoSource = useCallback((title: string, season: number, episode: number, movie: number, lang: Lang): VideoSource => {
-		let baseURL = `${BASE_URL}/video?auth-token=${authToken}&series=${selectedSerieID}`;
+		let baseURL = `${BASE_API_URL}/video?auth-token=${authToken}&series=${selectedSerieID}`;
 
 		if (movie !== -1) {
 			baseURL += `&movie=${movie}`;
@@ -63,7 +65,7 @@ export default function Watch() {
 			metadata: {
 				title: `${title} - Season ${season}, Episode ${episode}`,
 				artist: 'CineFinn',
-				artwork: `${BASE_URL}/images/${selectedSerieID}/cover.jpg?auth-token=${authToken}`,
+				artwork: `${BASE_API_URL}/images/${selectedSerieID}/cover.jpg?auth-token=${authToken}`,
 			},
 		};
 	}, []);

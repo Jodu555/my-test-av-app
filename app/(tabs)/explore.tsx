@@ -17,7 +17,7 @@ export default function Explore() {
 						height: 300,
 					}}
 					source={{
-						uri: `http://cinema.jodu555.de/flag-langs/gerdub.svg`,
+						uri: `https://cinema.jodu555.de/flag-langs/gerdub.svg`,
 					}}
 					contentFit="cover"
 				/>
