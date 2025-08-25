@@ -1,6 +1,7 @@
 import { ThemedText } from '@/components/ThemedText';
 import useStore from '@/hooks/useStore';
 import { Lang } from '@/types';
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { useEventListener } from 'expo';
 import { Image } from 'expo-image';
 import { useVideoPlayer, VideoSource, VideoView } from 'expo-video';
@@ -220,14 +221,45 @@ export default function Watch() {
 							<Button title="Jump to latest watch position!" color={'#0dcaf0'} onPress={() => onJumpToLatestWatchPosition()} />
 						</View>
 					) : null}
-					<VideoView
-						style={styles.video}
-						player={player}
-						nativeControls={true}
-						startsPictureInPictureAutomatically={true}
-						allowsFullscreen
-						allowsPictureInPicture
-					/>
+					<View>
+						<VideoView
+							style={styles.video}
+							player={player}
+							// nativeControls={false}
+							nativeControls={true}
+							startsPictureInPictureAutomatically={true}
+							allowsFullscreen
+							allowsPictureInPicture
+						/>
+						<View
+							style={{
+								position: 'absolute',
+								top: -30,
+								left: 0,
+								right: 0,
+								bottom: 0,
+								// justifyContent: 'center',
+								alignItems: 'center',
+								flexDirection: 'row',
+								gap: 20,
+								justifyContent: 'space-around',
+							}}>
+							<MaterialIcons name="skip-previous" size={50} color={'white'} />
+							<MaterialIcons name="fast-rewind" size={50} color={'white'} />
+							<MaterialIcons name="play-arrow" size={50} color={'white'} />
+							<MaterialIcons name="fast-forward" size={50} color={'white'} />
+							<MaterialIcons name="skip-next" size={50} color={'white'} />
+						</View>
+						<View
+							style={{ position: 'absolute', bottom: 20, left: 12, right: 15, flexDirection: 'row', justifyContent: 'space-between' }}>
+							<ThemedText>00:00 - 23:40</ThemedText>
+							<View style={{ flexDirection: 'row', gap: 15 }}>
+								<MaterialIcons name="settings" size={25} color={'white'} />
+								<MaterialIcons name="fullscreen" size={25} color={'white'} />
+							</View>
+						</View>
+					</View>
+					<View style={{ paddingBottom: 150 }}></View>
 				</>
 			)}
 		</ScrollView>
@@ -246,6 +278,7 @@ const styles = StyleSheet.create({
 		width: 350,
 		height: 275,
 		paddingBottom: 50,
+		position: 'relative',
 	},
 	controlsContainer: {
 		padding: 10,
