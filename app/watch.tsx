@@ -1,7 +1,6 @@
 import { ThemedText } from '@/components/ThemedText';
 import useStore from '@/hooks/useStore';
 import { Lang } from '@/types';
-import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { useEventListener } from 'expo';
 import { Image } from 'expo-image';
 import { useVideoPlayer, VideoSource, VideoView } from 'expo-video';
@@ -141,6 +140,8 @@ export default function Watch() {
 		}
 	};
 
+	const [controlsVisible, setControlsVisible] = useState(true);
+
 	return (
 		<ScrollView>
 			<Text style={{ color: 'white', paddingTop: 30, paddingStart: 20, paddingEnd: 15 }}>{dump()}</Text>
@@ -223,6 +224,17 @@ export default function Watch() {
 							<Button title="Jump to latest watch position!" color={'#0dcaf0'} onPress={() => onJumpToLatestWatchPosition()} />
 						</View>
 					) : null}
+					{/* <View style={styles.videoContainer}>
+						<VideoView
+							style={styles.video}
+							player={player}
+							nativeControls={false}
+							startsPictureInPictureAutomatically={true}
+							allowsFullscreen
+							allowsPictureInPicture
+						/>
+						<VideoControls player={player} isVisible={controlsVisible} onToggleVisibility={() => setControlsVisible(!controlsVisible)} />
+					</View> */}
 					<View>
 						<VideoView
 							style={styles.video}
@@ -233,7 +245,7 @@ export default function Watch() {
 							allowsFullscreen
 							allowsPictureInPicture
 						/>
-						<View
+						{/* <View
 							style={{
 								position: 'absolute',
 								top: -30,
@@ -259,7 +271,7 @@ export default function Watch() {
 								<MaterialIcons name="settings" size={25} color={'white'} />
 								<MaterialIcons name="fullscreen" size={25} color={'white'} />
 							</View>
-						</View>
+						</View> */}
 					</View>
 					<View style={{ paddingBottom: 150 }}></View>
 				</>
@@ -282,6 +294,15 @@ const styles = StyleSheet.create({
 		paddingBottom: 50,
 		position: 'relative',
 	},
+	// videoContainer: {
+	// 	position: 'relative',
+	// 	width: 350,
+	// 	height: 275,
+	// },
+	// video: {
+	// 	width: '100%',
+	// 	height: '100%',
+	// },
 	controlsContainer: {
 		padding: 10,
 	},
